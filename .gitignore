@@ -1,0 +1,5 @@
+/tests/selenium-screenshot*
+/tests/*.html
+/tests/output.xml
+/venv
+.idea
