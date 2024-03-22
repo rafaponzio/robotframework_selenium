@@ -47,18 +47,22 @@ Verify Products Are Visible In Cart
 	Verify Text Is Visible	${PRODUCT_TEXT_2}	blue top
 
 Verify Sum Of Product Values Is Correct
-    ${product_1_total} =    Get Text    css:tr:nth-child(1) p.cart_total_price
-    ${product_1_total_cleaned} =    Replace String    ${product_1_total}    Rs.    ${EMPTY}    2
-    ${product_1_total_int} =    Convert To Number    ${product_1_total_cleaned}
+    ${total_sum}=    Set Variable    0
+    ${line_number}=    Set Variable    1
 
-    ${product_2_total} =    Get Text    css:tr:nth-child(2) p.cart_total_price
-    ${product_2_total_cleaned} =    Replace String    ${product_2_total}    Rs.    ${EMPTY}    2
-    ${product_2_total_int} =    Convert To Number    ${product_2_total_cleaned}
+    ${num_lines}=    Get Element Count    css:tr p.cart_total_price
 
-    ${total_sum} =    Evaluate    ${product_1_total_int} + ${product_2_total_int}
-    ${cart_total} =    Get Text    css:tr:nth-child(3) p.cart_total_price
-    ${cart_total_cleaned} =    Replace String    ${cart_total}    Rs.    ${EMPTY}    2
-    ${cart_total_int} =    Convert To Number    ${cart_total_cleaned}
+    FOR    ${line_number}    IN RANGE    1    ${num_lines}
+        ${total_text}=    Get Text    css:tr:nth-child(${line_number}) p.cart_total_price
+        ${total_cleaned}=    Replace String    ${total_text}    Rs.    ${EMPTY}    2
+        ${total_int}=    Convert To Number    ${total_cleaned}
+        ${total_sum}=    Evaluate    ${total_sum} + ${total_int}
+    END
+
+    ${cart_total}=    Get Text    css:tr:nth-child(${num_lines}) p.cart_total_price
+    ${cart_total_cleaned}=    Replace String    ${cart_total}    Rs.    ${EMPTY}    2
+    ${cart_total_int}=    Convert To Number    ${cart_total_cleaned}
+
     Should Be Equal    ${total_sum}    ${cart_total_int}
 
 Scroll To Element
