@@ -74,3 +74,4 @@ Scroll To Element
 Clean all
     Navigate To Page    delete_cart/1
     Navigate To Page    delete_cart/2
+    Close Browser
