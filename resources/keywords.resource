@@ -1,12 +1,13 @@
 *** Settings ***
-Resource    locators.robot
+Resource    locators.resource
+Library    SeleniumLibrary
 
 *** Keywords ***
 Login
-    [Arguments]  ${user}  ${pass}
+    [Arguments]  ${login}
     Navigate to Page  login
-    Input Text  ${LOGIN_EMAIL}  ${user}
-    Input Text  ${LOGIN_PASSWORD}  ${pass}
+    Input Text  ${LOGIN_EMAIL}    ${login.user}
+    Input Text  ${LOGIN_PASSWORD}    ${login.pwd}
     Click Button  ${LOGIN_BUTTON}
 
 Search Product and Add to Cart

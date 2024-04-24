@@ -3,3 +3,7 @@
 /tests/output.xml
 /venv
 .idea
+.DS_Store
+*.html
+output.xml
+*.png

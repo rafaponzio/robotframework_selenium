@@ -1,8 +1,10 @@
 *** Variables ***
 ${BROWSER}    chrome
 ${BASE_URL}   http://automationexercise.com
-${USER}		  kjatohkhhvbtqbfpzf@cazlg.com
-${PASS}		  qwe123@
+
+&{LOGIN}    
+...    user=kjatohkhhvbtqbfpzf@cazlg.com    
+...    pwd=qwe123@
 
 # Page Locators
 ${LOGIN_EMAIL}         css:input[data-qa="login-email"]

@@ -1,14 +1,13 @@
 *** Settings ***
-Library    SeleniumLibrary
 Library    String
-Resource    ../resources/keywords.robot
+Resource    ../resources/keywords.resource
 Test Setup  Open Browser    ${BASE_URL}    ${BROWSER}
 Test Teardown  Clean all
 
 *** Test Cases ***
 Add Two Products To Cart And Verify The Sum
     [Tags]    SmokeTest
-    Login    ${USER}    ${PASS}
+    Login    ${LOGIN}
     Navigate To Page    products
     Verify Search Bar Is Visible
     Search Product and Add to Cart    men tshirt
